@@ -29,7 +29,7 @@ init([]) ->
     %% is stopped
 	
     process_flag(trap_exit, true),
-    io:format("~p starting~n",[?MODULE]),
+    lager:info("~p starting~n",[?MODULE]),
     {ok, 0}.
 
 handle_call({prime, K}, _From, N) -> 
@@ -40,7 +40,7 @@ handle_cast(_Msg, N)  -> {noreply, N}.
 handle_info(_Info, N)  -> {noreply, N}.
 
 terminate(_Reason, _N) -> 
-    io:format("~p stopping~n",[?MODULE]),
+    lager:info("~p stopping~n",[?MODULE]),
     ok.
 
 code_change(_OldVsn, N, _Extra) -> {ok, N}.
@@ -48,9 +48,8 @@ code_change(_OldVsn, N, _Extra) -> {ok, N}.
 make_new_prime(K) ->
     if
 	K > 100 ->
-	    alarm_handler:set_alarm(tooHot),
+            lager:warning("too hot!"),
 	    N = lib_primes:make_prime(K),
-	    alarm_handler:clear_alarm(tooHot),
 	    N;
 	true ->
 	    lib_primes:make_prime(K)

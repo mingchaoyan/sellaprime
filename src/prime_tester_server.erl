@@ -61,7 +61,7 @@ init([]) ->
     %% want terminate/2 to be called when the application
     %% is stopped
     process_flag(trap_exit, true),
-    io:format("~p starting~n",[?MODULE]),
+    lager:info("~p starting~n",[?MODULE]),
     {ok, #state{}}.
 
 %%--------------------------------------------------------------------
@@ -124,7 +124,7 @@ handle_info(_Info, State) ->
 %% @end
 %%--------------------------------------------------------------------
 terminate(_Reason, _State) ->
-    io:format("~p stopping~n",[?MODULE]),
+    lager:info("~p stopping~n",[?MODULE]),
     ok.
 
 %%--------------------------------------------------------------------

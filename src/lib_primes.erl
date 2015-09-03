@@ -15,10 +15,9 @@ make_prime(K) when K > 0 -> %% <label id="make_primes2" />
     new_seed(),
     N = make_random_int(K),
     if N > 3 ->
-	    io:format("Generating a ~w digit prime ",[K]),
+	    lager:info("Generating a ~w digit prime ",[K]),
 	    MaxTries = N - 3,
 	    P1 = make_prime(MaxTries, N+1), 
-	    io:format("~n",[]),
 	    P1;
 	true ->
 	    make_prime(K)
@@ -27,7 +26,6 @@ make_prime(K) when K > 0 -> %% <label id="make_primes2" />
 make_prime(0, _) ->    %% <label id="prime_loop1" />
     exit(impossible);
 make_prime(K, P) ->
-    io:format(".",[]),
     case is_prime(P) of
 	true  -> P;
 	false -> make_prime(K-1, P+1)
