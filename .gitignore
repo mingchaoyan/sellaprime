@@ -1,5 +1,6 @@
 .rebar
 ebin/
+rel/
 log/
 deps/
 
