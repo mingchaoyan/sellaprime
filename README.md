@@ -82,8 +82,6 @@ $ ./bin/sp getpid
 ...
 $ ./bin/sp attach
 ```
-
-##new_prime
 ```erlang
 1>prime_server:new_prime(1).
 3
